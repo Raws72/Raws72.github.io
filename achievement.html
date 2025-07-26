@@ -172,3 +172,74 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Tambahkan style ini */
+        #musicPopup {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup musik (muncul pertama kali) -->
+    <div id="musicPopup">
+        <div class="popup-box">
+            <h3>🎵 Musik Ucapan 🎵</h3>
+            <p>Klik tombol dibawah untuk memutar musik:</p>
+            <button onclick="startMusic()">Putar Musik</button>
+            <p><small>(Kamu bisa matikan nanti via tombol di pojok)</small></p>
+        </div>
+    </div>
+
+    <!-- Konten kartu ucapan (awalnya tersembunyi) -->
+    <div id="mainContent" style="display:none;">
+        <!-- ... (seluruh konten kartu ucapanmu yang lama) ... -->
+    </div>
+
+    <!-- Audio (hidden) -->
+    <audio id="bgMusic" loop>
+        <source src="audio/lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function startMusic() {
+            const music = document.getElementById('bgMusic');
+            music.play(); // Mulai musik
+            
+            document.getElementById('musicPopup').style.display = 'none'; // Sembunyikan popup
+            document.getElementById('mainContent').style.display = 'block'; // Tampilkan konten
+            
+            // Simpan preferensi user di localStorage
+            localStorage.setItem('musicAllowed', 'true');
+        }
+
+        // Cek jika user sudah pernah mengizinkan musik
+        window.onload = function() {
+            if(localStorage.getItem('musicAllowed') === 'true') {
+                startMusic();
+            }
+        };
+    </script>
+</body>
+</html>
+<button onclick="document.getElementById('bgMusic').pause()" 
+        style="position:fixed; bottom:20px; right:20px; background:#ff6b6b; color:white; border:none; padding:10px; border-radius:50%;">
+    ⏸️
+</button>
