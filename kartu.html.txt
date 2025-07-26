@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selamat Ulang Tahun!</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #fff0f5;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .kartu {
+            background: white;
+            padding: 30px;
+            width: 70%;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            animation: muncul 2s;
+        }
+        @keyframes muncul {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 { color: #ff6b6b; }
+    </style>
+</head>
+<body>
+    <div class="kartu">
+        <h1>🎂 SELAMAT ULANG TAHUN! 🎂</h1>
+        <p>Hai [Salsabila Putri Rohmah],</p>
+        <p>Selamat ulang tahun ya! Semoga di usia yang baru ini:</p>
+        <p>• Semakin bahagia<br>• Sehat selalu<br>• Semua impian terkabul</p>
+        <p>Terima kasih sudah menjadi teman yang luar biasa!</p>
+        <p style="font-style: italic;">- [Rafi]</p>
+        
+        <!-- Tambahkan foto jika mau -->
+        <!-- <img src="foto-kalian.jpg" style="width:200px; border-radius:10px; margin-top:20px;"> -->
+    </div>
+</body>
+</html>

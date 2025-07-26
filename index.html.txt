@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Untuk Kamu</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: pink;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>💖 Untuk Kamu 💖</h2>
+        <p>Masukkan tanggal ultahmu (DDMMYYYY):</p>
+        <input type="password" id="password" placeholder="Contoh: 01012000">
+        <button onclick="bukaKartu()">Buka Pesan</button>
+        <p id="error" style="color:red; display:none;">Salah, coba lagi!</p>
+    </div>
+
+    <script>
+        function bukaKartu() {
+            // Ganti dengan tanggal ultah temanmu (format: DDMMYYYY)
+            if (document.getElementById("password").value === "27072006") {
+                window.location.href = "kartu.html";
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
