@@ -4,50 +4,269 @@
     <title>Untuk Kamu</title>
     <style>
         body {
-            font-family: Arial;
-            background: pink;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             text-align: center;
-            padding-top: 50px;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
+        
+        /* Floating stars background */
+        .star {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffd700"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') no-repeat center center;
+            opacity: 0;
+            animation: float 8s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(120deg);
+                opacity: 0;
+            }
+        }
+        
         .box {
             background: white;
-            padding: 20px;
-            width: 300px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
         }
-        input, button {
-            padding: 10px;
-            margin: 10px;
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #f5f7fa, #e4e8f0, #f5f7fa) border-box;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            animation: borderPulse 6s linear infinite;
+        }
+        
+        @keyframes borderPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+        
+        h2 {
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            font-size: 26px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 24px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        input {
+            padding: 12px 15px;
+            margin: 10px 0;
             width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+            background: #f9f9f9;
         }
+        
+        input:focus {
+            border-color: #a0a0a0;
+            box-shadow: 0 0 0 2px rgba(160,160,160,0.1);
+        }
+        
         button {
-            background: #ff6b6b;
+            padding: 12px 25px;
+            margin: 15px 0;
+            width: 85%;
+            background: linear-gradient(to right, #6b73ff, #000dff);
             color: white;
             border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        #error {
+            color: #e74c3c;
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            animation: shake 0.4s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+        
+        .hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .box {
+                padding: 25px;
+                width: 85%;
+            }
+            
+            h2 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating stars background -->
+    <div id="stars-container"></div>
+    
     <div class="box">
-        <h2>✨ Untuk Kamu ✨</h2>  <!-- Changed emoji here -->
-        <p>Masukkan tanggal ultahmu (DDMMYYYY):</p>
-        <input type="password" id="password" placeholder="Contoh: 01012000">
-        <button onclick="bukaKartu()">Buka Pesan</button>
-        <p id="error" style="color:red; display:none;">Salah, coba lagi!</p>
+        <h2>Pesan Spesial</h2>
+        <p>Masukkan tanggal penting (DDMMYYYY):</p>
+        <input type="password" id="password" placeholder="Contoh: 27072006">
+        <button onclick="bukaKartu()">Lihat Pesan</button>
+        <p id="error" style="display:none;">Tanggal tidak sesuai, coba lagi</p>
+        <p class="hint">Gunakan format tanggal tanpa spasi atau garis</p>
     </div>
 
     <script>
-        function bukaKartu() {
-            // Ganti dengan tanggal ultah temanmu (format: DDMMYYYY)
-            if (document.getElementById("password").value === "27072006") {
-                window.location.href = "kartu.html";
-            } else {
-                document.getElementById("error").style.display = "block";
+        // Create floating stars
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            
+            for (let i = 0; i < 12; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random properties
+                const size = Math.random() * 15 + 10;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 6 + 4;
+                const opacity = Math.random() * 0.6 + 0.2;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${posX}%`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.animationDuration = `${duration}s`;
+                star.style.opacity = opacity;
+                
+                container.appendChild(star);
             }
         }
+        
+        function bukaKartu() {
+            const passwordInput = document.getElementById("password");
+            const errorElement = document.getElementById("error");
+            
+            // Password tetap sama (27072006)
+            if (passwordInput.value === "27072006") {
+                // Smooth transition before redirect
+                document.querySelector('.box').style.animation = "fadeIn 0.5s reverse forwards";
+                setTimeout(() => {
+                    window.location.href = "kartu.html";
+                }, 500);
+            } else {
+                // Error feedback
+                passwordInput.style.borderColor = "#e74c3c";
+                passwordInput.style.backgroundColor = "#fff5f5";
+                errorElement.style.display = "block";
+                
+                setTimeout(() => {
+                    passwordInput.style.borderColor = "#ddd";
+                    passwordInput.style.backgroundColor = "#f9f9f9";
+                }, 1000);
+                
+                // Clear input after wrong attempt
+                setTimeout(() => {
+                    passwordInput.value = "";
+                }, 1500);
+            }
+        }
+        
+        // Initialize
+        window.onload = function() {
+            createStars();
+            
+            // Create new stars periodically
+            setInterval(createStars, 4000);
+            
+            // Enter key support
+            document.getElementById("password").addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    bukaKartu();
+                }
+            });
+        };
     </script>
 </body>
 </html>
