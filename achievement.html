@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Achievement!</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #fff0f5;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .achievement-card {
+            background: white;
+            padding: 30px;
+            width: 70%;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            animation: muncul 2s;
+        }
+        @keyframes muncul {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 { color: #ff6b6b; }
+        .art-display {
+            margin: 25px 0;
+            position: relative;
+        }
+        .art-image {
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(255,107,107,0.3);
+            transition: transform 0.3s;
+        }
+        .art-image:hover {
+            transform: scale(1.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="achievement-card">
+        <span class="badge">🎨 ART ACHIEVEMENT 🎨</span>
+        <h1>✨ Karya Terbaikmu ✨</h1>
+        
+        <div class="art-display">
+            <img src="https://raws72.github.io/image/keqingart.jpg" 
+                 alt="Keqing Artwork by Salsabila"
+                 class="art-image"
+                 id="artPhoto">
+        </div>
+        
+        <p>Ini adalah salah satu karya terbaikmu yang selalu membuatku kagum!</p>
+        <p>Detail yang kamu buat sangat menakjubkan dan menunjukkan bakat besarmu.</p>
+        
+        <div style="margin-top: 30px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+            <h3>🎯 Achievement Unlocked:</h3>
+            <ul>
+                <li>Membuat karakter favorit seseorang dengan sempurna</li>
+                <li>Memberikan inspirasi melalui karya seni</li>
+                <li>Membuktikan dedikasi dan ketekunan dalam menggambar</li>
+            </ul>
+        </div>
+        
+        <a href="index.html" class="back-button">&larr; Kembali ke Ucapan</a>
+    </div>
+
+    <script>
+        // Animasi foto
+        function animatePhoto() {
+            const photo = document.getElementById('artPhoto');
+            let scale = 1;
+            let direction = 0.01;
+            
+            setInterval(() => {
+                scale += direction;
+                if (scale > 1.03) direction = -0.01;
+                if (scale < 0.97) direction = 0.01;
+                photo.style.transform = `scale(${scale})`;
+            }, 100);
+        }
+        
+        window.onload = function() {
+            animatePhoto();
+        };
+    </script>
+</body>
+</html>
